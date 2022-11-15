@@ -20,6 +20,7 @@ function verifyIfExistingAccountCPF(request,response,next){
   // Permite acesso a variavel customer 
   request.customer = customer;
 
+  // next () will run the code when middleware function is finished.
   return next();
 }
 
@@ -37,7 +38,7 @@ function getBalance(statement) {
 
 app.post("/accounts", (request,response) => {
   const {cpf,name} = request.body;
-  const customerAlreadyExists = customers.some((customer) => customer.cpf === cpf)
+  const customerAlreadyExists = customers.some(customer => customer.cpf === cpf)
 
   if (customerAlreadyExists) {
     return response.status(400).json({error: "this customer already exists"})
