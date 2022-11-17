@@ -10,12 +10,12 @@ app.use(cors());
 const users = [];
 
 function checksExistsUserAccount(request, response, next) {
-  const { username } = request.header;
+  const { username } = request.headers;
 
   const user = users.find((user) => user.username === username);
 
   if (!user) {
-    return response.status(400).json({ error: "User name does not exist!" });
+    return response.status(404).json({ error: "User name does not exist!" });
   }
 
   request.user = user;
@@ -24,31 +24,34 @@ function checksExistsUserAccount(request, response, next) {
 }
 
 function checksCreateTodosUserAvailability(request, response, next) {
-  const { username } = request.header;
+   const user = request.user;   
 
-  const user = users.find((user) => user.username === username);
-
-  if ((user.pro === false && user.todos.lenght() <= 10) || user.pro === true) {
-    return next();
+  if (user.pro === false && user.todos.lenght >= 10) {
+    return response.status(403).json({ error: "Number of todos was exceeded" });
   }
-  if (user.pro === false && user.todos.lenght() > 10) {
-    return response.status(404).json({ error: "Number of todos was exceeded" });
+  if ((user.pro === false && user.todos.lenght < 10) || user.pro === true) {
+    return next();
   }
 }
 
 function checksTodoExists(request, response, next) {
-  const { username } = request.header;
-  const { id } = request.params;
+  const { username } = request.headers;
+  const { id } = request.params;  
 
   const user = users.find((user) => user.username === username);
-  const todo = user.todos.find((todo) => todo.id === id);
+
+  if (!user) {
+    return response.status(400).json({ error: "User name does not exist!" });
+  }
+
+  const todo = user.todos.find((todo) => todo.id === id);  
 
   if (!user || !todo) {
     return response
-      .status(404)
+      .status(400)
       .json({ error: "user,todo or id does not exist or are invalid." });
   }
-  if (!uuidv4.validate(id)) {
+  if (!validate(id)) {
     return response
       .status(400)
       .json({ error: "user,todo or id does not exist or are invalid." });
