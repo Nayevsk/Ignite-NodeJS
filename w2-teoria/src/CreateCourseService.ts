@@ -8,7 +8,8 @@
 interface Course {
   name: string;
   educator: string;
-  duration: number;
+  // a ? antes dos : significa que o atributo eh opicional.
+  duration?: number;
 }
 
 class CreateCourseService {
