@@ -10,6 +10,8 @@
 
 5 - yarn tsc --init comando usado para criar o arquivo tsconfig.json que sera alterado frequentemente.
 
+6 - Seguir os passos para instalar o prittier+ eslint : https://www.notion.so/ESLint-e-Prettier-Trilha-Node-js-d3f3ef576e7f45dfbbde5c25fa662779
+
 OBS: 
   - Para rodar o codigo usando o node, eh necessario "traduzir" esse codigo do TS para JS. Para realizar
     esse processo utiliza-se o comando 'yarn tsc'. Esse comando traduz cada arquivo TS para JS, de forma que no caso de haver 10 arquivos TS serao criados outros 10 JS no mesmo path. 
@@ -17,6 +19,3 @@ OBS:
     Por isso eh necessario ir a tsconfig no script "outDir" e alterar esse path para outro lugar. Desta forma, toda traducao para JS que ocorrer sera direcionada para essa pasta, evitando a aglomeracao de arquivos num mesmo path.
 
 ---------------- Criando a Primeira API -----------------
-1 - instalar dependencias necessarias (pritier + eslint): https://www.notion.so/ESLint-e-Prettier-Trilha-Node-js-d3f3ef576e7f45dfbbde5c25fa662779
-
-2 -
