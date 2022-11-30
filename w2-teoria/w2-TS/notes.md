@@ -18,7 +18,7 @@
      "script"{
       "dev":"ts-node-dev --transpile-only --poll --ignore-watch node_modules --respawn src/server.ts".  
      }
-    O --poll eh adicionado pois estou rodando o projeto numa wsl.
+    O --poll eh adicionado se estiver rodando o projeto numa wsl.
 
 8 - Para evitar que apareca uma mensagem de error caso pule 2 linhas, ir a eslintrc.json e alterar "prittier/prittier":0.
 
