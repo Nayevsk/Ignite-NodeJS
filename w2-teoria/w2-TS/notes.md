@@ -13,19 +13,30 @@
 
 6 - Seguir os passos para instalar o prittier + eslint : https://www.notion.so/ESLint-e-Prettier-Trilha-Node-js-d3f3ef576e7f45dfbbde5c25fa662779
 
-7 - Installar o ts-node-dev : "yarn add ts-node-dev -D", vai instalar a dependencia.
-    is a package.json e criar:
+7 - Installar o ts-node-dev : "yarn add ts-node-dev -D". Apos isso:
+    Ir a package.json e adicionar:
      "script"{
-      "dev":"ts-node-dev --transpile-only --poll --ignore-watch node_modules --respawn src/server.ts".  
+      "dev":"ts-node-dev --transpile-only --ignore-watch node_modules --respawn src/server.ts".  
      }
-    O --poll eh adicionado se estiver rodando o projeto numa wsl.
-
-8 - Para evitar que apareca uma mensagem de error caso pule 2 linhas, ir a eslintrc.json e alterar "prittier/prittier":0.
-
-OBS: 
-  - Para rodar o codigo usando o node, eh necessario "traduzir" esse codigo do TS para JS. Para realizar
-    esse processo utiliza-se o comando 'yarn tsc'. Esse comando traduz cada arquivo TS para JS, de forma que no caso de haver 10 arquivos TS serao criados outros 10 JS no mesmo path. 
     
-    Por isso eh necessario ir a tsconfig no script "outDir" e alterar esse path para outro lugar. Desta forma, toda traducao para JS que ocorrer sera direcionada para essa pasta, evitando a aglomeracao de arquivos num mesmo path.
+8 - Ir no tsconfig e desabilitar(comentar) "strict":true.
 
----------------- Criando a Primeira API -----------------
+9 - Setting debbug: Debbug --> create a launch.json file e modifica para ficar assim:
+        "configurations": [
+            {
+            "type": "node",
+            "request": "attach",
+            "name": "Launch Program",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "outFiles": [
+                "${workspaceFolder}/**/*.js"
+            ]
+            }
+        ]
+    Como usar: roda o servidor, coloca break points, run debbuger e fazer requests.
+     
+10 - 
+
+
