@@ -1,36 +1,31 @@
 import { Category } from "../model/category";
+import { ICategoriesRepository, ICreateCategoryDTO} from "./ICategoriesRepository";
 
-//DTO => Data Transfer Object (no caso cria uma interface para fazer transferencia de dados)
-interface ICreateCategoryDTO {
-  name:String;
-  description: String;
-}
-
-class CategoriesRepository {  
+class CategoriesRepository implements ICategoriesRepository {
 
   private categories: Category[];
 
-  constructor(){
+  constructor() {
     this.categories = [];
   }
 
-  create({description,name} : ICreateCategoryDTO){    
+  create({ description, name }: ICreateCategoryDTO) {
     const category = new Category();
 
-    Object.assign(category,{
+    Object.assign(category, {
       name,
       description,
-      created_at:new Date()
+      created_at: new Date()
     })
-    
+
     this.categories.push(category);
   }
 
-  list():Category[] {
+  list(): Category[] {
     return this.categories;
   }
 
-  findByName(name:String): Category {
+  findByName(name: String): Category {
     // : Category informa que essa funcao vai retornar um objeto do tipo Category.
     const category = this.categories.find(category => category.name === name);
     return category;
@@ -38,4 +33,4 @@ class CategoriesRepository {
 
 }
 
-export {CategoriesRepository};
+export { CategoriesRepository };
