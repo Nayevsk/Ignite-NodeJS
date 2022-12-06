@@ -1,20 +1,20 @@
-import { Category } from "../model/category";
-import { ICategoriesRepository, ICreateCategoryDTO} from "./ICategoriesRepository";
+import { Category } from "../../model/category";
+import { ICategoriesRepository, ICreateCategoryDTO } from "../ICategoriesRepository";
 
 class CategoriesRepository implements ICategoriesRepository {
   // Padrao Singleton: Evita a criacao de varias instancias da msma classe (evitando q categories array seja criado sempre que algum request seja feito). logica utilizada no metodo getInstance
 
   private categories: Category[];
 
-  private static INSTANCE: CategoriesRepository;  
+  private static INSTANCE: CategoriesRepository;
 
   private constructor() {
     this.categories = [];
   }
 
-  public static getInstance():CategoriesRepository {
+  public static getInstance(): CategoriesRepository {
 
-    if(!CategoriesRepository.INSTANCE){
+    if (!CategoriesRepository.INSTANCE) {
       CategoriesRepository.INSTANCE = new CategoriesRepository();
     }
     return CategoriesRepository.INSTANCE;
