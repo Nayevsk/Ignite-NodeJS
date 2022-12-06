@@ -8,3 +8,5 @@ const createCategoryUseCase = new CreateCategoryUseCase(categoriesRepository);
 const createCategoryController = new CreateCategoryController(createCategoryUseCase);
 
 export {createCategoryController}
+
+// Duvida: como funciona o formato de index.ts?

@@ -1,6 +1,8 @@
 import { Category } from "../model/category";
 import { ICategoriesRepository, ICreateCategoryDTO} from "./ICategoriesRepository";
 
+// Padrao Singleton:
+
 class CategoriesRepository implements ICategoriesRepository {
 
   private categories: Category[];
