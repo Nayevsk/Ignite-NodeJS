@@ -1,14 +1,14 @@
 import { Specification } from "../model/Specification";
 
-interface ICreateSpesificationDTO{
+interface ICreateSpecificationDTO{
   name:String;
   description:String;
 }
 
 interface ISpecificationsRepository {
-  create({name,description}:ICreateSpesificationDTO):void; 
+  create({name,description}:ICreateSpecificationDTO):void; 
   list(): Specification [];
   findByName(name:String):Specification;
 }
 
-export {ISpecificationsRepository, ICreateSpesificationDTO}
+export {ISpecificationsRepository, ICreateSpecificationDTO}
