@@ -13,7 +13,7 @@ class CategoriesRepository implements ICategoriesRepository {
   }
 
   public static getInstance(): CategoriesRepository {
-
+// Estrutura Singleton
     if (!CategoriesRepository.INSTANCE) {
       CategoriesRepository.INSTANCE = new CategoriesRepository();
     }
