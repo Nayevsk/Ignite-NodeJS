@@ -1,0 +1,18 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API Documentation",
+    "description": "This is an application for listing and create users",
+    "version": "1.0.0",
+    "contact": {
+      "email": "nayevsklucas@hotmail.com"
+    }
+  },
+  // "paths": {
+  //   "/users" {
+  //     "post" {
+  //       "summary": ""
+  //     }
+  //   }
+  // }
+}
