@@ -1,4 +1,4 @@
-import { Category } from "../../model/category";
+import { Category } from "../../entities/category";
 import { ICategoriesRepository, ICreateCategoryDTO } from "../ICategoriesRepository";
 
 class CategoriesRepository implements ICategoriesRepository {
@@ -13,7 +13,7 @@ class CategoriesRepository implements ICategoriesRepository {
   }
 
   public static getInstance(): CategoriesRepository {
-// Estrutura Singleton
+    // Estrutura Singleton
     if (!CategoriesRepository.INSTANCE) {
       CategoriesRepository.INSTANCE = new CategoriesRepository();
     }
