@@ -1,44 +1,41 @@
+import { getRepository, Repository } from "typeorm";
+
 import { Category } from "../../entities/category";
 import { ICategoriesRepository, ICreateCategoryDTO } from "../ICategoriesRepository";
 
 class CategoriesRepository implements ICategoriesRepository {
-  // Padrao Singleton: Evita a criacao de varias instancias da msma classe (evitando q categories array seja criado sempre que algum request seja feito). logica utilizada no metodo getInstance
+ 
+  //   public static getInstance(): CategoriesRepository {
+  //      Estrutura Singleton
+  //    if (!CategoriesRepository.INSTANCE) {
+  //      CategoriesRepository.INSTANCE = new CategoriesRepository();
+  //    }
+  //   return CategoriesRepository.INSTANCE;
+  // }
 
-  private categories: Category[];
+  private repository: Repository<Category>;
 
-  private static INSTANCE: CategoriesRepository;
-
-  private constructor() {
-    this.categories = [];
+  constructor() {
+    this.repository = getRepository(Category);
   }
 
-  public static getInstance(): CategoriesRepository {
-    // Estrutura Singleton
-    if (!CategoriesRepository.INSTANCE) {
-      CategoriesRepository.INSTANCE = new CategoriesRepository();
-    }
-    return CategoriesRepository.INSTANCE;
-  }
-
-  create({ description, name }: ICreateCategoryDTO) {
-    const category = new Category();
-
-    Object.assign(category, {
+  async create({ description, name }: ICreateCategoryDTO): Promise<void> {
+    const category = this.repository.create({
       name,
       description,
-      created_at: new Date()
-    })
+    });
 
-    this.categories.push(category);
+    await this.repository.save(category)
   }
 
-  list(): Category[] {
-    return this.categories;
+  async list(): Promise<Category[]>{
+    const categories = await this.repository.find()
+    return categories;
   }
 
-  findByName(name: String): Category {
-    // : Category informa que essa funcao vai retornar um objeto do tipo Category.
-    const category = this.categories.find(category => category.name === name);
+  async findByName(name: String): Promise<Category> {
+    // Select * from categories where(usar "{}")  name = "name" limit 1.
+    const category = await this.repository.findOne({name})
     return category;
   }
 
