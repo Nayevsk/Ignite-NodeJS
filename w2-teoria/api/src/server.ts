@@ -1,12 +1,13 @@
 import express from "express";
 import swaggerUi from "swagger-ui-express";
 
+import "./database";
+
+import "./shared/container"
+
 import { router } from "./routes";
 import swaggerFile from "./swagger.json";
 // Se essa importacao n funcionar ir ate tsconfig.json e "resolveJsonModule": true,  
-
-import "./database";
-
 const app = express();
 
 app.use(express.json());
